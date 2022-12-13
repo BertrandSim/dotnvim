@@ -1,0 +1,68 @@
+snippet "fu?nc?" "function" rb
+function! ${1:name}($2)
+	${3:${VISUAL:"body}}
+endfunction
+endsnippet
+
+snippet if "if" b
+if $1
+	${2:${VISUAL}}
+endif
+endsnippet
+
+snippet ifel "if..else" b
+if $1
+	${2:${VISUAL}}
+else
+	$3
+endif
+endsnippet
+
+snippet "el?if?" "elseif" br
+elseif $1
+	${2:${VISUAL}}
+endsnippet
+
+snippet el "else" b
+else $1
+	${2:${VISUAL}}
+endsnippet
+
+snippet "ifh(as?)?p" "if has('patch-n.n.nnn')" br
+if has('patch-${1:n.n.nnn}')
+	${2:${VISUAL}}
+endif
+endsnippet
+
+snippet ifex "if exists('')" b
+if exists("${1:var}")
+	${2:${VISUAL}}
+endif
+endsnippet
+
+
+# snippet <> "<|>" iA
+# <${1:${VISUAL}}>
+# endsnippet
+
+snippet en "execute 'normal[!]'" b
+execute 'normal! $1'
+endsnippet
+
+snippet undoft "b:undo_ftplugin" b
+" Teardown
+if !exists('b:undo_ftplugin')
+	let b:undo_ftplugin = ''
+else
+	let b:undo_ftplugin .= '| '
+endif
+
+let b:undo_ftplugin .= '${1:cmd_string}'
+endsnippet
+
+snippet augr "augroup" b
+augroup ${1:groupname}
+	autocmd!
+	${2}
+augroup END
+endsnippet

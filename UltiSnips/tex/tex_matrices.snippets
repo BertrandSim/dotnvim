@@ -1,0 +1,143 @@
+# matrices and tables
+# -------------------
+
+global !p
+
+import re
+from usnip_helpers import *
+
+def create_row_vec(snip):
+
+	""" creates a row vector via \matrix environment.  """
+
+	# search for (optional) number supplied
+	ncol = re.search('\d', snip.buffer[snip.line])
+	if ncol == None or ncol == 0: 
+		# if no number or invalid number supplied
+		ncol = 1
+	else:
+		ncol = ncol.group(0)
+		ncol = int(ncol)
+
+	# erase current line
+	snip.buffer[snip.line] = ''
+
+	mat_str = "\\begin\{${1:p}matrix\}\n" + \
+	          "\t" + str_row_inner(ncol, starttabnum=2) + "\n" + \
+			  "\\end\{$1matrix\}"
+	snip.expand_anon(mat_str)
+
+
+def str_row_inner(ncol, starttabnum=1):
+
+	""" creates the body inside \begin{matrix} and \end{matrix} 
+	 
+	 	$1 & $2 & ... & $n
+	"""
+
+	tabnums = [ i + starttabnum for i in range(ncol) ]
+	tabstops = ['$' + str(n) for n in tabnums ] 	# [$1, $2, ..., $n]
+	return ' & '.join(tabstops)
+
+	
+def create_col_vec(snip):
+	nrow = re.search('\d', snip.buffer[snip.line])
+	if nrow == None or nrow == 0:
+		nrow = 1
+	else:
+		nrow = nrow.group(0)
+		nrow = int(nrow)
+
+	snip.buffer[snip.line] = ''
+
+	mat_str = "\\begin\{${1:p}matrix\}\n" + \
+	          "\t" + str_col_inner(nrow, starttabnum=2) + "\n" + \
+			  "\\end\{$1matrix\}"
+	snip.expand_anon(mat_str)
+
+def str_col_inner(nrow, starttabnum=1):
+
+	tabnums = [ i + starttabnum for i in range(nrow) ]
+	tabstops = ['$' + str(n) for n in tabnums ] 	# [$1, $2, ..., $n]
+	return ' \\\\\\\\ '.join(tabstops) 				# [$1 \\ $2 \\ ... \\ $n]
+
+def create_matrix(snip):
+
+	args = snip.buffer[snip.line].split(',')
+
+	matrix_type = args[0][:-6]
+	nrow = int(args[1])
+	ncol = int(args[2])
+
+	snip.buffer[snip.line] = ''
+	# snip.cursor.set( snip.snippet_start[0], snip.snippet_start[1]-1 )
+
+	if matrix_type == 's':
+		matrix_type = 'small'
+
+	mat_str = "\\begin\{${1:"+ matrix_type +"}matrix\}\n" + \
+	          "\t" + str_matrix_inner(nrow, ncol, starttabnum=2) + "\n" + \
+			  "\\end\{$1matrix\}"
+	snip.expand_anon(mat_str)
+
+def str_matrix_inner(nrow, ncol, starttabnum=1, shiftwidth=1):
+	
+	""" creates the body inside \begin{matrix} and \end{matrix} 
+	 
+	 	$n & $n & ... & $n \\
+	 	$n & $n & ... & $n \\
+		... 
+	 	$n & $n & ... & $n
+	"""
+
+	starttabnums = [i*ncol + starttabnum for i in range(nrow)]
+	rowstrs = [ str_row_inner(ncol, stnum) for stnum in starttabnums ]
+	sep = ' \\\\\\\\\n' + shiftwidth *'\t'
+	return sep.join(rowstrs)
+
+
+endglobal
+
+post_jump "create_matrix(snip)"
+snippet "(\w?)mat(\d)\D(\d)" "[?]matrix mxn" rb
+`!p 
+snip.rv = match.group(1)`matrix,`!p 
+snip.rv = match.group(2)`,`!p 
+snip.rv = match.group(3)`
+endsnippet
+
+# [NOTE] this only expands on a line on its own.
+# To allow expansions within line, use snip.snippet_start / _end
+
+post_jump "create_row_vec(snip)" 
+snippet "rowv(?:ec?)?(\d)?" "row vector with optional number of components" rb
+`!p snip.rv = match.group(1)`
+endsnippet
+
+post_jump "create_col_vec(snip)" 
+snippet "colv(?:ec?)?(\d)?" "col vector with optional number of components" rb
+`!p snip.rv = match.group(1)`
+endsnippet
+
+
+post_expand "jump_forward(snip, 3)"
+snippet tab "\begin{table}" b
+\begin{table}[${1:htpb!}]
+	\centering
+	\begin{tabular}${2:[${3:rows}]}{${4:cols}}
+		\hline
+		${5:% header row} \\\ [0.5ex]
+		\hline\hline
+		${6:% content} \\\ [1ex]
+		\hline
+	\end{tabular}
+	\caption{${7:caption text}}
+	\label{tab:${8:label}}
+\end{table}
+$0
+endsnippet
+
+# [TODO 2022-04-21]: any number of columns / rows
+
+
+# vim: foldmethod=marker: foldmarker=([{,}])

@@ -1,0 +1,89 @@
+# snippets for the commandline-window
+
+global !p
+
+# import snippet helper functions, eg. for jumping and expanding
+from usnip_helpers import *
+
+def cmdlinewin():
+	return vim.eval('getcmdwintype()')
+
+endglobal
+
+
+# command {{{1
+
+# :%s/ / /g , :'<,'>s/ / /g , :s/ / /g
+# puts cursor after the first /
+post_expand "jump_forward(snip, 2)"
+context "cmdlinewin() == ':'"
+snippet "(%|'\<,'\>|)s" ":s/ / /g" rb
+${1:`!p snip.rv=match.group(1)`}s${2:/}${3:}$2${4:}$2${5:g}
+endsnippet
+
+# vg --> vimgrep
+context "cmdlinewin() == ':'"
+snippet vg "vimgrep + copen list of matches" b
+vimgrep /${1:}/${2:gj} ${3:**/*${4:`!p
+file_ext = vim.eval("expand('#:e')")
+snip.rv = '.' + file_ext if file_ext else ''
+`}} | copen
+endsnippet
+
+# lv --> lvimgrep
+context "cmdlinewin() == ':'"
+snippet lv "lvimgrep + lopen list of matches" b
+lvimgrep /${1:}/${2:gj} ${3:%} | lopen
+endsnippet
+
+# hg --> helpgrep
+context "cmdlinewin() == ':'"
+snippet hg "helpgrep + copen list of matches" b
+execute 'tab helpgrep ${1:}' | copen
+endsnippet
+
+# lhg --> lhelpgrep
+context "cmdlinewin() == ':'"
+snippet lh "helpgrep + copen list of matches" b
+execute 'tab lhelpgrep ${1:}' | lopen
+endsnippet
+
+
+# rdr --> redirect and paste to buffer
+# eg. rdr <tab> scriptnames
+context "cmdlinewin() == ':'"
+snippet rdr "redirect to temporary buffer" b
+redir => tmp | ${1:} | redir END | ${2:new} | put! = tmp | norm! gg"_dd
+endsnippet
+
+
+# %% --> expand('%:.')
+# snippet body uses '#' instead of '%', since '%' is the cmdline window
+context "cmdlinewin() == ':'"
+snippet %% "current file relative to current directory"
+`!v fnamemodify(expand('#'), ":~:.")`
+endsnippet
+
+# %p --> expand('%:p')
+# snippet body uses '#' instead of '%', since '%' is the cmdline window
+context "cmdlinewin() == ':'"
+snippet %%p "full path of current file"
+`!v expand('#:p')`
+endsnippet
+
+
+# search {{{1
+
+# VV --> \%V...\%V
+context "cmdlinewin() in ['/','?']"
+snippet VV "search within visual selection" i
+\%V${1}\%V
+endsnippet
+
+# >< --> \%>'x...\%<'y
+context "cmdlinewin() in ['/','?']"
+snippet >< "search between marks" i
+\%>'${1:s}${2}\%<'${3:e}
+endsnippet
+
+

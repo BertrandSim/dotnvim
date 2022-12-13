@@ -1,0 +1,18 @@
+[submodule "pack/bundle/opt/vim-angry"]
+	path = pack/text-obj/start/vim-angry
+	url = https://github.com/b4winckler/vim-angry.git
+[submodule "pack/bundle/opt/vim-easy-align"]
+	path = pack/bundle/start/vim-easy-align
+	url = https://github.com/junegunn/vim-easy-align.git
+[submodule "pack/bundle/opt/vimtex"]
+	path = pack/bundle/start/vimtex
+	url = https://github.com/lervag/vimtex.git
+[submodule "pack/bundle/opt/vim-sandwich"]
+	path = pack/bundle/start/vim-sandwich
+	url = https://github.com/machakann/vim-sandwich.git
+[submodule "pack/usr/opt/esv-in-vim"]
+	path = pack/usr/start/esv-in-vim
+	url = git@github.com:BertrandSim/esv-in-vim.git
+[submodule "pack/usr/start/vim-multindent"]
+	path = pack/usr/start/vim-multindent
+	url = git@github.com:BertrandSim/vim-multindent.git

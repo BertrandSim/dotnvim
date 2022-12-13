@@ -1,0 +1,25 @@
+# unneeded vimfiles
+.netrwhist
+.netrwhist~
+.viminfo
+
+# temporary vim swap files 
+*.swp
+*.swo
+
+# vim undo files
+.*.un~
+/.undo/
+
+# tags
+tags
+**/doc/tags
+
+# python pyc files 
+*.pyc
+
+# vim-plug directory
+/plugged/
+
+# misc
+esv_api_key.vim

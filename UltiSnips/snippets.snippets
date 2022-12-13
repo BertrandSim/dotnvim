@@ -1,0 +1,43 @@
+# snippets for making snippets
+# Talk about recursion xD
+
+global !p
+from usnip_tabstopcounter import max_tab_stop
+endglobal
+
+snippet snip "Ultisnips snippet definition." bs
+`!p snip.rv = "snippet"` ${1:Trigger_word} "${2:Description}" ${3:biwr}
+${4:${VISUAL}}
+`!p snip.rv = "endsnippet"`
+$0
+endsnippet
+
+snippet $$ "tabstop ${n:default_text}" iA
+\$\{${1:`!p 
+if not snip.c:
+# ^ to prevent recursive update 0->1->2...
+	snip.rv = max_tab_stop() + 1
+`}:${2:${VISUAL:default_text}}\}$0
+endsnippet
+
+snippet VIS "{VISUAL}" i
+\$\{VISUAL${1::${VISUAL:default_text}}\}$0
+endsnippet
+
+snippet VIST "{VISUAL} with transformation" i
+\$\{VISUAL${1::${2:default}/${3:search}/${4:replace}/${5:option}}\}$0
+endsnippet
+
+snippet py "python interp" w
+\`!p $1\`
+endsnippet
+
+snippet prv "python interp with return value" w
+\`!p snip.rv = $1\`
+endsnippet
+
+snippet mg "match.group()" w
+match.group($1)
+endsnippet
+
+

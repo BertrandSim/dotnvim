@@ -1,0 +1,22 @@
+snippet for "for loop" b
+{% for ${1:var} in ${2:collection} %}
+	$3
+{% endfor %}
+endsnippet
+
+snippet if "if" b
+{% if ${1:cond} %}
+	$2
+{% endif %}
+endsnippet
+
+snippet com "comment" b
+{% comment %}
+	$1
+{% endcomment %}
+endsnippet
+
+snippet %% "tag" iA
+{% $1 %}
+endsnippet
+
