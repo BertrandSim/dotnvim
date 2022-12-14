@@ -663,7 +663,9 @@ let g:mundo_inline_undo = 0		" don't show inline diffs inside graph
   " see also undo settings
 
 " for esv_in_vim
-source $VIMHOME/macros/esv_api_key.vim
+if filereadable(expand("$VIMHOME/macros/esv_api_key.vim"))
+  source $VIMHOME/macros/esv_api_key.vim
+endif
 
 " mappings for easy align plugin
 if isdirectory($VIMHOME."/plugged/vim-easy-align")
