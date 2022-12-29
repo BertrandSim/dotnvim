@@ -1199,7 +1199,12 @@ endif
 " clipboard {{{1
 " ---------
 if has('clipboard')
-  set clipboard=unnamed  " use the * register (system clipboard) by default
+  if has('win32')
+	set clipboard=unnamed  " use the * register (system clipboard) by default
+  else 
+	set clipboard=unnamedplus  " use the + register (in linux, system clipboard) by default 
+	" set clipboard=unnamed,unnamedplus  " use the *, + registers (in linux, mouse selection/middlemouse and ctrl-shift-C/V clipboard)
+  endif
 endif
 
 " quick edit vimrc {{{1
