@@ -143,8 +143,8 @@ endfunction
 
 " returns cursor position [line, col]
 function! s:get_cursor_pos(mode)
-  if a:mode ==# 't'
-    " (hack): for terminals, switch to terminal-normal mode to update cursor position
+  if a:mode ==# 't' && !has('nvim')
+    " (hack): for non-neovim vim terminals, switch to terminal-normal mode to update cursor position
     " then switch back to terminal mode
     call feedkeys("\<C-\>\<C-N>i", 'nix!')
   elseif a:mode ==# 'c'

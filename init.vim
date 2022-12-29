@@ -1181,13 +1181,16 @@ endfunction
 " terminal {{{1
 " --------
 
-if has('terminal')
+if has('terminal') || has('nvim')
   " key to enter terminal normal mode
-  tnoremap <F2> <C-W>N
+  tnoremap <F2> <C-\><C-N>
   " ... and back to terminal job mode
   augroup termm
 	autocmd!
-	if (v:version >= 801)
+	if has('nvim')
+	  autocmd TermOpen *     if &buftype ==# 'terminal' | nnoremap <buffer> <F2> i| endif
+	" for non-neovim vim,
+	elseif (v:version >= 801)  
 	  autocmd TerminalOpen * if &buftype ==# 'terminal' | nnoremap <buffer> <F2> i| endif
 	else
 	  autocmd BufWinEnter *  if &buftype ==# 'terminal' | nnoremap <buffer> <F2> i| endif
