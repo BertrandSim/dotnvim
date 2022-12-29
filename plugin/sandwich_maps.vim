@@ -17,13 +17,15 @@ nmap si <Plug>(operator-sandwich-add)
 xmap si <Plug>(operator-sandwich-add)
 omap si <Plug>(operator-sandwich-g@)
 
-" delete with sd
+" delete with sd / sD (without query)
 nmap sd <Plug>(operator-sandwich-delete)<Plug>(operator-sandwich-release-count)<Plug>(textobj-sandwich-query-a)
 xmap sd <Plug>(operator-sandwich-delete)
+nmap sD <Plug>(operator-sandwich-delete)
 
-" replace with sc
-nmap sc <Plug>(operator-sandwich-replace)<Plug>(operator-sandwich-release-count)<Plug>(textobj-sandwich-query-a)
-xmap sc <Plug>(operator-sandwich-replace)
+" replace with sr / sR
+nmap sr <Plug>(operator-sandwich-replace)<Plug>(operator-sandwich-release-count)<Plug>(textobj-sandwich-query-a)
+xmap sr <Plug>(operator-sandwich-replace)
+nmap sR <Plug>(operator-sandwich-replace)
 
 
 " use [count] sw / sW to 
