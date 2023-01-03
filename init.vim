@@ -755,18 +755,22 @@ map <F5> :set background=<C-R>=&background == "dark" ? "light" : "dark"<CR><CR>
 
 colorscheme darkblue		" fallback to preinstalled colorscheme (if others unavailable)
 
-"" solarized8 colorscheme (downloaded from github) {{{2
-"" also suited for 24bit color terminals :)
-"" -----------------------------------------------
+"" solarized8 colorscheme (from lifepillar/vim-solarized8 on github) {{{2
+"" also suited for 24bit color terminals
+"" -------------------------------------
 
 if has('termguicolors')
   set termguicolors
 endif
 
+" use solarized8's colorscheme, but
+" don't load solarized8's ft-specific hl groups (eg. texmathzonex)
+let g:solarized_extra_hi_groups=0
 silent! colorscheme solarized8
 
 if g:colors_name == 'solarized8'
   set background=light
+  " distinguish folded text from window separators
   highlight Folded guibg=#dcd7c8
 endif
 
