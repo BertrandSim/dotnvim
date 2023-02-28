@@ -462,4 +462,15 @@ snippet fr "frame" b
 \end{frame}
 $0
 endsnippet
+
+# TODO [2023-03-01]: dynamically get prev frametitle for $1
+snippet ebfr "end and begin frame" b
+\end{frame}
+
+\begin{frame}
+\frametitle{$1}
+$0
+endsnippet
+
+
 # vim: set foldmarker=([{,}]) :
