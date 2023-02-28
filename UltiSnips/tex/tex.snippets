@@ -233,7 +233,18 @@ endsnippet
 # press trigger after sm to include limits
 context "math()"
 snippet \sum "sum_{}^{}"
-\sum_{${1:i=1}}^{${2:n}} $3
+\sum_{${1:i=1}}^{${2:n}} $0
+endsnippet
+
+context "math()"
+snippet int "int without limits" A
+\int
+endsnippet
+
+# press trigger after int to include limits
+context "math()"
+snippet \int "int_{}^{}"
+\int_{${1}}^{${2}} $0
 endsnippet
 
 context "math()"
@@ -415,7 +426,6 @@ ${2:,}\end{aligned}
 \end{equation}
 $0
 endsnippet
-
 
 # envs, starred variants ([{2
 # ----
