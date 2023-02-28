@@ -1294,6 +1294,18 @@ function PosCompare(p1, p2)
   else														| return  0 | endif
 endfunction
 
+" disable nvim default-mappings {{{1
+" -----------------------------
+if has('nvim')
+  nunmap Y
+  nunmap <C-L>
+  iunmap <C-U>
+  iunmap <C-W>
+  xunmap *
+  xunmap #
+  nunmap &
+endif
+
 " modelines for folding of this file {{{1
 " ----------------------------------
 set modelines=2
