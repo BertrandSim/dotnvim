@@ -867,6 +867,17 @@ nnoremap <expr> <Left>  winnr() == winnr('l') ? ( winnr() == winnr('h') ? '' : "
 nnoremap <expr> <Down>  winnr() == winnr('j') ? ( winnr() == winnr('k') ? '' : "\<C-w>".'-' ) : "\<C-w>".'+'
 nnoremap <expr> <Up>    winnr() == winnr('j') ? ( winnr() == winnr('k') ? '' : "\<C-w>".'+' ) : "\<C-w>".'-'
 
+" switching windows with <leader>{n}
+if has('nvim')
+  " ref: http://stackoverflow.com/a/6404246/151007
+  " If I have more than 9 windows open I have bigger problems :)
+  for i in range(9)
+	execute 'nnoremap <Leader>'.i.' <cmd>'.i.'wincmd w<CR>'
+	execute 'tnoremap <Leader>'.i.' <cmd>'.i.'wincmd w<CR>'
+  endfor
+endif
+
+
 " movement {{{1
 " --------
 
