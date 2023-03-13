@@ -1203,6 +1203,12 @@ if has('terminal') || has('nvim')
   augroup END
 endif
 
+" commands to open term in a split 
+" (vanilla vim opens a term in a split by default, not so for neovim)
+if has('nvim')
+  command Sterm split | term
+  command Vsterm vsplit | term
+endif
 
 " clipboard {{{1
 " ---------
