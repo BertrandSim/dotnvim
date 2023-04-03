@@ -10,12 +10,35 @@
 # $0
 # endsnippet
 
-snippet `r "r code chunk" b
-\`\`\`{r}
+snippet knitrsetup "setup knitr params" b
+\`\`\`{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+\`\`\`
+endsnippet
+
+snippet rr "r code chunk" b
+\`\`\`{r $1}
 ${2:${VISUAL}}
 \`\`\`
 $0
 endsnippet
+
+# alias
+snippet chk "r code chunk" b
+\`\`\`{r $1}
+${2:${VISUAL}}
+\`\`\`
+$0
+endsnippet
+
+snippet rasis "chunk for as-is text" b
+\`\`\`{asis echo=$1}
+${2:${VISUAL}}
+\`\`\`
+$0
+endsnippet
+
+
 
 extends markdown, tex, r
 # or extend manually to current buffer with 
