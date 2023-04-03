@@ -35,6 +35,21 @@ snippet beamerdoc "Beamer template" b
 \end{document}
 endsnippet
 
+context "top_of_file(snip, 2)"
+post_expand "jump_forward(snip, 2)"
+snippet tikzpic "tikz standalone" b
+\documentclass[tikz, border=5mm]{standalone}
+\usetikzlibrary{$1}
+\tikzset{$2}
+\begin{document}
+\begin{tikzpicture}
+
+	${3:${VISUAL}}
+
+\end{tikzpicture}
+\end{document}
+endsnippet
+
 # preamble ([{1
 # --------
 

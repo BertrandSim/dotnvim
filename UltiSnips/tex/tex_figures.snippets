@@ -49,3 +49,19 @@ post_expand "jump_forward(snip, 1)"
 snippet sreF "\subref{}: text"
 \textbf{\subref{${1:fig:${2:label}}}:} ${3:text};
 endsnippet
+
+
+post_expand "jump_forward(snip, 1)"
+snippet tikzfig "Figure with tikz" b
+\begin{figure}[${1:htpb}]
+	\centering
+	\begin{tikzpicture}
+		$2
+	\end{tikzpicture}
+	\caption{${3:caption text}}
+	\label{fig:${4:label}}
+\end{figure}
+$0
+
+endsnippet
+

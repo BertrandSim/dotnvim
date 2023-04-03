@@ -1,0 +1,21 @@
+global !p
+from usnip_helpers import *
+from usnip_contexts import *
+from usnip_tex_contexts import * 	
+endglobal
+
+# tikz snippets
+# ----------------------
+snippet utl "\usetikzlibrary" b
+\usetikzlibrary{$1}
+endsnippet
+
+snippet tnode "tikz node" b
+\node[${1:options}] (${2:name}) {${3:text label}};
+endsnippet
+
+snippet tedge "tikz edge" b
+\draw (${1:source}) edge[${2:options}] node$3{${4:label}} (${5:dest});
+endsnippet
+
+
