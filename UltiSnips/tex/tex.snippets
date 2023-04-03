@@ -488,12 +488,24 @@ snippet fr "frame" b
 $0
 endsnippet
 
-# TODO [2023-03-01]: dynamically get prev frametitle for $1
+# split a frame. title is retrieved from prev frametitle.
 snippet ebfr "end and begin frame" b
 \end{frame}
 
 \begin{frame}
-\frametitle{$1}
+\frametitle{${1:`!p 
+if not snip.c:
+	fr_title_pos = vim.eval("searchpos('\s*\\frametitle{\zs.\+}', 'bnW')")
+	row = int(fr_title_pos[0])
+	col = int(fr_title_pos[1])
+
+	# if fr_title_pos != [0,0]:
+	if row != 0 or col != 0:
+		title = vim.current.buffer[row-1].rstrip()[(col-1):(-1)]
+	else:
+		title = ""
+	snip.rv = title
+`}}
 $0
 endsnippet
 
