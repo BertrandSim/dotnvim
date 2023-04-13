@@ -13,6 +13,8 @@ snippet doc "basic template" b
 \documentclass[${1:opt}]{${2:article}}
 
 \usepackage{amsmath, amssymb}
+\usepackage[shortlabels]{enumitem}
+\setlist[enumerate]{align=left}
 
 \begin{document}
 
@@ -27,6 +29,8 @@ snippet beamerdoc "Beamer template" b
 \documentclass[${1:}]{beamer}
 
 \usepackage{amsmath, amssymb}
+\usepackage[shortlabels]{enumitem}
+\setlist[enumerate]{}
 
 \begin{document}
 
@@ -148,6 +152,20 @@ endsnippet
 # ----- 
 snippet enum "enumerate" b
 \begin{enumerate}
+	\item $0
+\end{enumerate}
+endsnippet
+
+# requires [shortlabels]{enumitem}
+snippet enuma "enumerate[(a)]" b
+\begin{enumerate}[(a)]
+	\item $0
+\end{enumerate}
+endsnippet
+
+# requires [shortlabels]{enumitem}
+snippet enumi "enumerate[(i)]" b
+\begin{enumerate}[(i)]
 	\item $0
 \end{enumerate}
 endsnippet
