@@ -12,7 +12,7 @@
 
 snippet knitrsetup "setup knitr params" b
 \`\`\`{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, fig.align='center', out.width='70%')
 \`\`\`
 endsnippet
 
@@ -32,7 +32,7 @@ $0
 endsnippet
 
 snippet rasis "chunk for as-is text" b
-\`\`\`{asis echo=$1}
+\`\`\`{asis}
 ${2:${VISUAL}}
 \`\`\`
 $0
