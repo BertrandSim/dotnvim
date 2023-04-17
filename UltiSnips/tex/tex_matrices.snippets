@@ -61,19 +61,24 @@ def str_col_inner(nrow, starttabnum=1):
 	tabstops = ['$' + str(n) for n in tabnums ] 	# [$1, $2, ..., $n]
 	return ' \\\\\\\\ '.join(tabstops) 				# [$1 \\ $2 \\ ... \\ $n]
 
+
 def create_matrix(snip):
 
-	args = snip.buffer[snip.line].split(',')
-
-	matrix_type = args[0][:-6]
-	nrow = int(args[1])
-	ncol = int(args[2])
-
-	snip.buffer[snip.line] = ''
-	# snip.cursor.set( snip.snippet_start[0], snip.snippet_start[1]-1 )
+	args = snip.buffer[snip.line].split('mat')
+	matrix_type = args[0]
+	nrow_ncol = [int(n) for n in args[1].split(',')]
+	nrow = nrow_ncol[0]
 
 	if matrix_type == 's':
 		matrix_type = 'small'
+
+	if len(nrow_ncol) == 2:
+		ncol = nrow_ncol[1]
+	else:
+		ncol = nrow
+
+	snip.buffer[snip.line] = ''
+	# snip.cursor.set( snip.snippet_start[0], snip.snippet_start[1]-1 )
 
 	mat_str = "\\begin\{${1:"+ matrix_type +"}matrix\}\n" + \
 	          "\t" + str_matrix_inner(nrow, ncol, starttabnum=2) + "\n" + \
@@ -95,16 +100,14 @@ def str_matrix_inner(nrow, ncol, starttabnum=1, shiftwidth=1):
 	sep = ' \\\\\\\\\n' + shiftwidth *'\t'
 	return sep.join(rowstrs)
 
-
 endglobal
 
-post_jump "create_matrix(snip)"
-snippet "(\w?)mat(\d)\D(\d)" "[?]matrix mxn" rb
-`!p 
-snip.rv = match.group(1)`matrix,`!p 
-snip.rv = match.group(2)`,`!p 
-snip.rv = match.group(3)`
+
+
+pre_expand "create_matrix(snip)"
+snippet "(\w+)?mat(\d)(,(\d))?" "?matrix m[,n]" rb
 endsnippet
+
 
 # [NOTE] this only expands on a line on its own.
 # To allow expansions within line, use snip.snippet_start / _end
