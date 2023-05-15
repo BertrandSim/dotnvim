@@ -148,15 +148,23 @@ call plug#end()
 
 " vimtex settings {{{2
 
-" use Sumatra as pdfviewer
-let g:vimtex_view_general_viewer = 'SumatraPDF'
-" setup forward search
-let g:vimtex_view_general_options
-	  \ = '-reuse-instance -forward-search @tex @line @pdf'
-" for inverse search (backward search), enter this in SumatraPDF:
-"   `vim -v --not-a-term -T dumb -c "VimtexInverseSearch %l '%f'"`
-"   as seen in :h :VimtexInverseSearch .
-" open in a new tab for a backward search
+if has('win32')
+  " use Sumatra as pdfviewer
+  let g:vimtex_view_general_viewer = 'SumatraPDF'
+  " setup forward search
+  let g:vimtex_view_general_options
+		\ = '-reuse-instance -forward-search @tex @line @pdf'
+  " for inverse search (backward search), enter this in SumatraPDF:
+  "   `vim -v --not-a-term -T dumb -c "VimtexInverseSearch %l '%f'"`
+  "   as seen in :h :VimtexInverseSearch .
+  " open in a new tab for a backward search
+elseif has('linux')
+  " use zathura as pdfviewer
+  let g:vimtex_view_method = 'zathura'
+  " requires xdotool for forward search, and
+  " setup inverse search in zathurarc
+endif
+
 let g:vimtex_view_reverse_search_edit_cmd = 'tabedit'
 
 " use single shot compilation instead of continuous mode
@@ -165,8 +173,10 @@ if !exists('g:vimtex_compiler_latexmk') |
 endif
 let g:vimtex_compiler_latexmk.continuous = 0
 
-" use pplatex to preprocess latexlog output
-let g:vimtex_quickfix_method = 'pplatex'
+if has('win32')
+  " use pplatex to preprocess latexlog output
+  let g:vimtex_quickfix_method = 'pplatex'
+endif
 
 " \lw to write and compile.
 augroup vimtex_config
