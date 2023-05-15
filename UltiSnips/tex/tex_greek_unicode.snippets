@@ -1,0 +1,110 @@
+# insert unicode greek characters with 
+#   kl[a-z] eg. kla -> α
+#   kv[a-z] eg. kvq -> ϑ
+#   kl[A-Z] eg. klG -> Γ
+#
+# let g:tex_unicode_input = 1 
+# beforehand, otherwise you'll get eg. \alpha, \vartheta, \Gamma
+# as defined in tex_greek_letters.snippets .
+#
+# glyphs can be found at:
+# list of latex to unicode math characters
+# https://gist.github.com/Metaxal/86be1b733c0f5ad4a0cf6c58cf140436
+
+global !p
+from usnip_tex_contexts import * 	
+
+greekunicode_lower = {
+# lower case letters
+# GREEK SMALL LETTER *
+  'a':   'α',
+  'b':   'β',
+  'g':   'γ',
+  'd':   'δ',
+  'e':   'ϵ', #		GREEK LUNATE EPSILON SYMBOL
+  'z':   'ζ',
+  'h':   'η',
+  'q':   'θ',
+  'i':   'ι',
+  'k':   'κ',
+  'l':   'λ',
+  'm':   'μ',
+  'n':   'ν',
+  'c':   'ξ',
+  # omicron is simply 'o',
+  'p':   'π',
+  'r':   'ρ',
+  's':   'σ',
+  't':   'τ',
+  'u':   'υ',
+  'f':   'ϕ', # 	GREEK PHI SYMBOL
+  'x':   'χ',
+  'y':   'ψ',
+  'w':   'ω',
+}
+
+greekunicode_variants = {
+# lower case variants
+  'e':  'ε', #		GREEK SMALL LETTER EPSILON
+  'q':  'ϑ', #		GREEK THETA SYMBOL
+  'p':  'ϖ', #		GREEK PI SYMBOL
+  'r':  'ϱ', #		GREEK RHO SYMBOL
+  's':  'ς', #		GREEK SMALL LETTER FINAL SIGMA
+  'f':  'φ', #		GREEK SMALL LETTER PHI
+}
+
+greekunicode_upper = {
+# Upper case letters
+# GREEK CAPITAL LETTER *
+  'g':  'Γ',
+  'd':  'Δ',
+  'q':  'Θ',
+  'l':  'Λ',
+  'c':  'Ξ',
+  'p':  'Π',
+  's':  'Σ',
+  'u':  'Υ',
+  'f':  'Φ',
+  'y':  'Ψ',
+  'w':  'Ω',
+}
+
+endglobal
+
+
+# quick insert gree[k] [l]owercase alphabets: eg, kla -> α
+priority 1
+context "math() and vim.vars.get('tex_unicode_input')"
+snippet "kl([a-z])" "greek unicode lowercase alphabets" rA
+`!p akey = match.group(1)
+if akey in greekunicode_lower:
+	snip.rv = greekunicode_lower[akey]
+else:
+	snip.rv = match.group(0)
+`
+endsnippet
+
+# quick insert gree[k] lowercase [v]ariants: eg, kvq -> ϑ
+priority 1
+context "math() and vim.vars.get('tex_unicode_input')"
+snippet "kv([a-z])" "greek unicode lowercase symbols" rA
+`!p akey = match.group(1)
+if akey in greekunicode_variants:
+	snip.rv = greekunicode_variants[akey]
+else:
+	snip.rv = match.group(0)
+`
+endsnippet
+
+# quick insert gree[k] uppercase alphabets: eg, klG -> Γ
+priority 1
+context "math() and vim.vars.get('tex_unicode_input')"
+snippet "kl([A-Z])" "greek unicode uppercase alphabets" rA
+`!p akey = match.group(1).lower()
+if akey in greekunicode_upper:
+	snip.rv = greekunicode_upper[akey]
+else:
+	snip.rv = match.group(0)
+`
+endsnippet
+
