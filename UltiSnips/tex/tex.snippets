@@ -41,6 +41,26 @@ endsnippet
 
 context "top_of_file(snip, 2)"
 post_expand "jump_forward(snip, 2)"
+snippet doclua "unicode input with lualatex" b
+%! TeX program = lualatex
+\documentclass[${1:opt}]{${2:article}}
+\usepackage{unicode-math}
+%\setmainfont{Libertinus Serif}
+%\setmathfont{Libertinus Math}
+\setmainfont{STIX Two Text}
+\setmathfont{STIX Two Math}
+
+\usepackage[shortlabels]{enumitem}
+\setlist[enumerate]{align=left}
+\begin{document}
+
+	${3:${VISUAL}}
+
+\end{document}
+endsnippet
+
+context "top_of_file(snip, 2)"
+post_expand "jump_forward(snip, 2)"
 snippet tikzpic "tikz standalone" b
 \documentclass[tikz, border=5mm]{standalone}
 \usetikzlibrary{$1}
