@@ -78,7 +78,7 @@ endglobal
 # quick insert gree[k] [l]owercase alphabets: eg, kla -> \alpha
 priority 0
 context "math()"
-snippet "kl([a-zA-Z])" "greek lowercase alphabets" rA
+snippet "kl([a-z])" "greek lowercase alphabets" rA
 `!p akey = match.group(1)
 if akey in greekalpha_lower:
 	snip.rv = '\\' + greekalpha_lower[akey]
@@ -87,11 +87,10 @@ else:
 `
 endsnippet
 
-
 # quick insert gree[k] lowercase [v]ariants: eg, kve -> \varepsilon
 priority 0
 context "math()"
-snippet "kv([a-zA-Z])" "greek lowercase variants" rA
+snippet "kv([a-z])" "greek lowercase variants" rA
 `!p akey = match.group(1)
 if akey in greekalpha_variants:
 	snip.rv = '\\' + greekalpha_variants[akey]
@@ -100,12 +99,23 @@ else:
 `
 endsnippet
 
+# # quick insert gree[k] [u]ppercase alphabets: eg, kug -> \Gamma
+# priority 0
+# context "math()"
+# snippet "ku([a-zA-Z])" "greek uppercase alphabets" rA
+# `!p akey = match.group(1).lower()
+# if akey in greekalpha_upper:
+# 	snip.rv = '\\' + greekalpha_upper[akey]
+# else:
+# 	snip.rv = match.group(0)
+# `
+# endsnippet
 
-# quick insert gree[k] [u]ppercase alphabets: eg, kug -> \Gamma
+# quick insert gree[k] uppercase alphabets: eg, klG -> \Gamma
 priority 0
 context "math()"
-snippet "ku([a-zA-Z])" "greek uppercase alphabets" rA
-`!p akey = match.group(1)
+snippet "kl([A-Z])" "greek uppercase alphabets 2" rA
+`!p akey = match.group(1).lower()
 if akey in greekalpha_upper:
 	snip.rv = '\\' + greekalpha_upper[akey]
 else:
