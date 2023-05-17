@@ -119,6 +119,8 @@ Plug 'kana/vim-textobj-line',
 Plug 'tpope/vim-fugitive'				" git wrapper for vim
 Plug 'BertrandSim/gv.vim'				" git commit browser in vim
 Plug 'itchyny/vim-gitbranch'			" show current git branch
+Plug 'lewis6991/gitsigns.nvim',			" preview diffs within the buffer
+  \ Cond(has('nvim'))
 
   " search and navigation:
 Plug 'preservim/nerdtree',				" file explorer in vim
@@ -592,6 +594,59 @@ if isdirectory($VIMHOME."/plugged/gv.vim")
   command! -bang -nargs=* GVA  GV<bang> --all <args>
   command! -bang -nargs=* GVAD GV<bang> --all --simplify-by-decoration <args>
 endif
+
+" }}}
+" gitsigns.nvim {{{2
+
+lua << EOF
+require('gitsigns').setup{
+
+  on_attach = function(bufnr)
+    local gs = package.loaded.gitsigns
+
+    local function map(mode, l, r, opts)
+      opts = opts or {}
+      opts.buffer = bufnr
+      vim.keymap.set(mode, l, r, opts)
+    end
+
+    -- Navigation
+    map('n', ']c', function()
+      if vim.wo.diff then return ']c' end
+      vim.schedule(function() gs.next_hunk() end)
+      return '<Ignore>'
+    end, {expr=true})
+
+    map('n', '[c', function()
+      if vim.wo.diff then return '[c' end
+      vim.schedule(function() gs.prev_hunk() end)
+      return '<Ignore>'
+    end, {expr=true})
+
+    -- Actions
+    vim.api.nvim_create_user_command('GSA', 'Gitsigns attach', {})
+    vim.api.nvim_create_user_command('GSD', 'Gitsigns detach', {})
+    map('n', '<leader>hs', gs.stage_hunk)
+    map('n', '<leader>hr', gs.reset_hunk)
+    map('n', '<leader>hu', gs.undo_stage_hunk)
+    map('v', '<leader>hs', function() gs.stage_hunk {vim.fn.line("."), vim.fn.line("v")} end)
+    map('v', '<leader>hr', function() gs.reset_hunk {vim.fn.line("."), vim.fn.line("v")} end)
+    --map('n', '<leader>hS', gs.stage_buffer)
+    --map('n', '<leader>hR', gs.reset_buffer)
+    map('n', '<leader>hp', gs.preview_hunk_inline)	
+    --map('n', '<leader>hp', gs.preview_hunk)	-- preview changes in a popup
+    --map('n', '<leader>hb', function() gs.blame_line{full=true} end)
+    --map('n', '<leader>tb', gs.toggle_current_line_blame)
+    map('n', '<leader>hd', gs.diffthis)						-- diff with index
+    map('n', '<leader>hD', function() gs.diffthis('~') end) -- diff with prev commit
+    --map('n', '<leader>td', gs.toggle_deleted)
+
+    -- Text objects
+    map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+  end
+
+}
+EOF
 
 " }}}
 " vim-columnmove settings {{{2
