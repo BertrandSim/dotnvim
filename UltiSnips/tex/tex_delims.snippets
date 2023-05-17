@@ -1,6 +1,7 @@
 global !p
 
 from usnip_tex_contexts import *
+from usnip_helpers import *
 
 def match_open_delim(d):
 	if   (d== '(') : return  ')'
@@ -18,7 +19,17 @@ endsnippet
 
 context "math()"
 priority 2
-snippet blr "bigl...bigr" iA
-\\${1:bigl}${2:(} ${3:${VISUAL}} \\${1/l$/r/}`!p snip.rv=match_open_delim(t[2])`
+post_expand "jump_forward(snip, 1)"
+snippet "(Bb|bb|B|b)lr" "bigl...bigr with various sizes" rA
+\\${1:`!p 
+size = match.group(1)
+if size == 'b':
+	snip.rv = 'big'
+elif size == 'B':
+	snip.rv = 'Big'
+elif size == 'bb':
+	snip.rv = 'bigg'
+elif size == 'Bb':
+	snip.rv = 'Bigg'`}l${2:(} ${3:${VISUAL}} \\$1r`!p snip.rv=match_open_delim(t[2])`
 endsnippet
 
