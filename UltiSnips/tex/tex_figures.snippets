@@ -20,7 +20,8 @@ endsnippet
 post_expand "jump_forward(snip, 3)"
 snippet sfig "\begin{subfigure}" b
 \begin{subfigure}[${1:b}]{${2:0.3\textwidth}}
-	\includegraphics[height=${3:3}cm] {${4:path/to/file}} 
+	\centering
+	\includegraphics[width=${3:0.9\textwidth}] {${4:path/to/file}} 
 	\caption{}
 	\label{fig:${5:label}}
 \end{subfigure}
@@ -31,10 +32,13 @@ snippet fsf "figure with subfig within" b
 \begin{figure}[${1:htpb}]
 	\centering
 	\begin{subfigure}[${2:b}]{${3:0.3\textwidth}}
-		\includegraphics[height=${4:3}cm] {${5:path/to/file}} 
+		\centering
+		\includegraphics[width=${4:0.9\textwidth}] {${5:path/to/file}} 
 		\caption{}
 		\label{fig:${6:label}}
 	\end{subfigure}
+	% \hfill % place additional spacing between subfigures
+	%
 	\caption{${7:caption text}}
 	\label{fig:${8:label}}
 \end{figure}
