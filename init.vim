@@ -569,6 +569,7 @@ let g:clever_f_mark_direct_color = 'CleverFDirectLabel'
 
 augroup hl-clever-f
   autocmd!
+  autocmd ColorScheme * highlight link CleverFDefaultLabel MatchParen
   autocmd ColorScheme * :call s:clever_f_mark_direct_hl_init()
 augroup END
 
