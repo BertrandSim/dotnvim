@@ -60,7 +60,7 @@ endif
 " filetypes {{{1
 " ---------
 let g:tex_flavor='latex'			" ft of .tex files to 'tex', not 'plaintex'.
-let g:tex_unicode_math=1			" use unicode-versions of snippets
+let g:tex_unicode_input=1			" input unicode chars for tex snippets
 
 
 " plugins {{{1
