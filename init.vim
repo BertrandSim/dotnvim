@@ -1025,6 +1025,8 @@ if has('patch-8.1.1270')
   set shortmess-=S	" show match position [n/N] when searching
 endif
 
+highlight! default link CurSearch IncSearch
+
 " search related mappings {{{1
 " -----------------------
 
