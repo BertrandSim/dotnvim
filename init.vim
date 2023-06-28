@@ -678,6 +678,18 @@ map gl <Plug>(columnmove-E)
 " NERDTree {{{2
 nnoremap <silent> <C-n> :<C-u>NERDTreeToggle<CR>
 
+" CtrlP {{{2
+" basic search modes
+let g:ctrlp_types = ['fil', 'buf', 'mru']
+" add search modes: search tags, tags in buffer(s)
+let g:ctrlp_extensions = ['tag', 'buffertag']
+" with a git repo, use un-gitignored files
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+" increase maximum number of results
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:8,results:24'
+" " project-specific .ctrlpignore file (doesn't work)
+" let g:ctrlp_extensions += ['autoignore'] 
+
 " tagbar {{{2
 " for .R files
 let g:tagbar_type_r = {
@@ -706,16 +718,6 @@ let g:gutentags_file_list_command = {
 " use omap for 'dm' mapping
 let g:SignatureMap = {'DeleteMark' : ''}	" remove normal-mode mapping
 " see 'nmaps to omaps' below 
-
-" CtrlP
-" basic search modes
-let g:ctrlp_types = ['fil', 'buf', 'mru']
-" add search modes: search tags, tags in buffer(s)
-let g:ctrlp_extensions = ['tag', 'buffertag']
-" allow project-specific .ctrlpignore file
-let g:ctrlp_extensions += ['autoignore']
-" increase maximum number of results
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:8,results:24'
 
 " Mundo {{{2
 nnoremap <F6> :<C-U>MundoToggle<CR>
