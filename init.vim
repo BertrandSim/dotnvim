@@ -135,11 +135,17 @@ Plug 'majutsushi/tagbar'				" show tags on a side margin
 Plug 'ludovicchabant/vim-gutentags'		" automatically generate tags
 Plug 'kshenoy/vim-signature'			" show marks in signs column (left gutter)
 
-  " misc and backups:
+  " colors:
+if has('nvim')
+  Plug 'brenoprata10/nvim-highlight-colors' " show color codes and names in neovim 
+else
+  Plug 'chrisbra/Colorizer', 
+	\{ 'on': ['ColorHighlight'] }			" show color codes and names in vim
+endif
+
+  " misc:
 Plug 'simnalamburt/vim-mundo'			" graphical undo tree
 Plug 'haya14busa/incsearch.vim'			" improved / ? incsearch
-Plug 'chrisbra/Colorizer', 
-  \{ 'on': ['ColorHighlight'] }			" show color codes and names in vim
 
 call plug#end()
 
@@ -752,6 +758,16 @@ if has('gui_running') &&
   nnoremap <silent> <expr> <C-S-Down> exists(":Transparency") ? ":\<C-u>Transparency -\<CR>" : ''
 endif
 
+" nvim-highlight-colors settings {{{2
+lua << EOF
+require("nvim-highlight-colors").setup {
+	load_on_start_up = false,
+	render = 'first_column', -- or 'foreground' or 'background'
+	enable_named_colors = true,
+	enable_tailwind = false,
+	custom_colors = {},
+}
+EOF
 
 " file related settings {{{1
 " ---------------------
