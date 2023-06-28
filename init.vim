@@ -769,6 +769,13 @@ require("nvim-highlight-colors").setup {
 }
 EOF
 
+" enable/disable/toggle with `[oc, ]oc, coc`
+nnoremap [oc <Cmd>HighlightColorsOn<CR>
+nnoremap ]oc <Cmd>HighlightColorsOff<CR>
+" nnoremap coc <Cmd>HighlightColorsToggle<CR>
+" call OperMap('oc', '<Cmd>HighlightColorsToggle<CR>', 'cy=')
+onoremap <expr> oc 'cy=' =~ v:operator ? '<Esc><Cmd>HighlightColorsToggle<CR>' : 'oc'
+
 " file related settings {{{1
 " ---------------------
 " use '/' for file paths, even on windows (instead of '\')
