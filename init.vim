@@ -761,8 +761,8 @@ endif
 " nvim-highlight-colors settings {{{2
 lua << EOF
 require("nvim-highlight-colors").setup {
-	load_on_start_up = false,
-	render = 'first_column', -- or 'foreground' or 'background'
+	render = 'background', -- or 'foreground' or 'first_column'
+	-- render = 'first_column', -- causes screen corruption!
 	enable_named_colors = true,
 	enable_tailwind = false,
 	custom_colors = {},
