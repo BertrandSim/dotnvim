@@ -680,10 +680,10 @@ map gl <Plug>(columnmove-E)
 " see h: g:tex_conceal as to the things each alphabet conceals
 " change this in tex, markdown, rmd ftplugin files
 
-" NERDTree
+" NERDTree {{{2
 nnoremap <silent> <C-n> :<C-u>NERDTreeToggle<CR>
 
-" tagbar
+" tagbar {{{2
 " for .R files
 let g:tagbar_type_r = {
     \ 'ctagstype' : 'r',
@@ -694,7 +694,7 @@ let g:tagbar_type_r = {
     \ ]
 \ }
 
-" gutentags: automatic ctags generation
+" gutentags: automatic ctags generation {{{2
 " exclude tagging in the following files
 let g:gutentags_ctags_exclude = []
 let g:gutentags_ctags_exclude += [
@@ -707,7 +707,7 @@ let g:gutentags_file_list_command = {
   \ },
   \}
 
-" vim-signature: show marks in side column
+" vim-signature: show marks in side column {{{2
 " use omap for 'dm' mapping
 let g:SignatureMap = {'DeleteMark' : ''}	" remove normal-mode mapping
 " see 'nmaps to omaps' below 
@@ -722,7 +722,7 @@ let g:ctrlp_extensions += ['autoignore']
 " increase maximum number of results
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:8,results:24'
 
-" Mundo
+" Mundo {{{2
 nnoremap <F6> :<C-U>MundoToggle<CR>
 let g:mundo_verbose_graph = 0	" use shorter graph to save space
 let g:mundo_inline_undo = 0		" don't show inline diffs inside graph 
@@ -730,12 +730,12 @@ let g:mundo_inline_undo = 0		" don't show inline diffs inside graph
   " see also after/ftplugin/Mundo.vim
   " see also undo settings
 
-" for esv_in_vim
+" esv_in_vim {{{2
 if filereadable(expand("$VIMHOME/macros/esv_api_key.vim"))
   source $VIMHOME/macros/esv_api_key.vim
 endif
 
-" mappings for easy align plugin
+" vim-easy-align mappings {{{2
 if isdirectory($VIMHOME."/plugged/vim-easy-align")
 
   nmap ga <Plug>(EasyAlign)
