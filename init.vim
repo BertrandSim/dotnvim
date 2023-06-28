@@ -62,6 +62,11 @@ endif
 let g:tex_flavor='latex'			" ft of .tex files to 'tex', not 'plaintex'.
 let g:tex_unicode_input=1			" input unicode chars for tex snippets
 
+" tex conceal settings -> superseded by vimtex 2.0
+" let g:tex_conceal = "abdgmsS"
+" see h: g:tex_conceal as to the things each alphabet conceals
+" change this in tex, markdown, rmd ftplugin files
+
 
 " plugins {{{1
 " --------
@@ -135,9 +140,6 @@ Plug 'simnalamburt/vim-mundo'			" graphical undo tree
 Plug 'haya14busa/incsearch.vim'			" improved / ? incsearch
 Plug 'chrisbra/Colorizer', 
   \{ 'on': ['ColorHighlight'] }			" show color codes and names in vim
-Plug 'BertrandSim/auto-pairs',
-  \{ 'on': [] }							" pairs of delims, forked from jiangmiao/auto-pairs.
-										"   superceded by brackets_arpeggio.vim, and pairspace.vim
 
 call plug#end()
 
@@ -673,13 +675,6 @@ map gh <Plug>(columnmove-B)
 map gl <Plug>(columnmove-E)
 
 " }}}
-
-
-" tex conceal settings -> superseded by vimtex 2.0
-" let g:tex_conceal = "abdgmsS"
-" see h: g:tex_conceal as to the things each alphabet conceals
-" change this in tex, markdown, rmd ftplugin files
-
 " NERDTree {{{2
 nnoremap <silent> <C-n> :<C-u>NERDTreeToggle<CR>
 
