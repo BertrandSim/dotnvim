@@ -832,8 +832,12 @@ set spellsuggest+=12
 " see https://vi.stackexchange.com/a/19681/21495
 
 " quickly fix last word before cursor with 'sp' 
-" and return to previous position
-nnoremap sp [s1z=<C-O>
+if has('nvim')
+  nnoremap sp 1z=
+else
+  " return to previous position via jumplist
+  nnoremap sp [s1z=<C-O>
+endif
 
 
 " colorschemes	{{{1
