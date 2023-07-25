@@ -63,8 +63,8 @@ else
   let b:undo_ftplugin .= ' | '
 endif
 
-" TODO [2020-07-17]: update Teardown 
-" Currently Arpeggioiunmap with | is not supported
+" NOTE [2020-07-17]: 
+" Currently :Arpeggioiunmap with | is not supported, so 
 " let b:undo_ftplugin .= '
 "   \ Arpeggioiunmap <buffer> mk |
 "   \ Arpeggioiunmap <buffer> dm |
@@ -72,8 +72,9 @@ endif
 "   \ iunmap <buffer> <Plug>(arpeggio-default:df)|
 "   \ iunmap <buffer> <Plug>(arpeggio-default:fd)|
 "   \'
-
-" Neither is Arpeggioimapclear. But that may remove other Arpeggio mappings not defined in this script
+" does not work.
+"
+" Neither is :Arpeggioimapclear. But that may remove other Arpeggio mappings not defined in this script
 " " let b:undo_ftplugin .= 'Arpeggioimapclear <buffer>'
 
 " The workaround is to use a function
