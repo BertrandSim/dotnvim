@@ -81,7 +81,6 @@ endfunction
 call plug#begin($VIMHOME.'/plugged')
 
   " core:
-Plug 'lifepillar/vim-solarized8'		" solarized8 colorscheme
 Plug 'BertrandSim/vim-unimpaired'		" handy pairs of mappings, forked from tpope
 Plug 'itchyny/lightline.vim'			" lean status line
 Plug 'SirVer/ultisnips',
@@ -96,6 +95,11 @@ Plug 'machakann/vim-columnmove',
 Plug 'BertrandSim/vim-arpeggio', 
   \ { 'branch': 'tmap' }				" key chords, forked to support Arpeggio in terminal mode
 Plug 'andymass/vim-matchup'				" navigate and highlight matching pairs
+
+  " colorschemes:
+Plug 'lifepillar/vim-solarized8'		" off-yellow / off-blue colorscheme (light / dark variants)
+Plug 'jnurmine/Zenburn'					" low contrast dark colorscheme
+Plug 'sainnhe/gruvbox-material'			" pastel/retro groove colors, with a softer touch
 
   " ft specific:
 Plug 'masukomi/vim-markdown-folding'	" expr-folding of markdown files
@@ -884,6 +888,19 @@ function! s:hl_solarized_folded()
     endif
   endif
 endfunction
+
+"" }}}
+"" gruvbox-material colorscheme {{{2
+"" -------------------------------------
+
+let g:gruvbox_material_foreground = 'material'
+let g:gruvbox_material_background = 'soft'
+
+" silent! colorscheme gruvbox-material
+
+if g:colors_name == 'gruvbox-material'
+  set background=dark
+endif
 
 "" }}}
 
