@@ -904,6 +904,23 @@ endif
 
 "" }}}
 
+augroup lightline_color_update
+  autocmd!
+  autocmd ColorScheme * call s:update_lightline_colors()
+augroup END
+
+function! s:update_lightline_colors()
+  if g:colors_name =~ 'solarized8'
+	let g:lightline.colorscheme = 'solarized_nomode'
+  elseif g:colors_name == 'gruvbox-material'
+    let g:lightline.colorscheme = 'gruvbox_material'
+  endif
+  call lightline#init()
+  call lightline#colorscheme()
+endfunction
+
+
+
 if &term =~ '256color'
   " disable Background Color Erase (BCE) so that color schemes
   " render properly when inside 256-color tmux and GNU screen.
