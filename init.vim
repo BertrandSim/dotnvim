@@ -1282,7 +1282,22 @@ command! Cview
 " cmdline + Ultisnips {{{1
 " -------------------
 " quick expand snippet via cmdline window
-cnoremap ;: <C-r>=&cedit<CR>:startinsert<CR><C-r>=UltiSnips#ExpandSnippet()<CR>
+if has('nvim')
+  " allow cursor to move one char past the end for proper snippet expansion
+  cnoremap ;: <cmd>call <SID>ve_onemore()<CR>
+	\<C-r>=&cedit<CR>:startinsert<CR><C-r>=UltiSnips#ExpandSnippet()<CR>
+	\<cmd> call <SID>ve_restore()<CR>
+else
+  cnoremap ;: <C-r>=&cedit<CR>:startinsert<CR><C-r>=UltiSnips#ExpandSnippet()<CR>
+endif
+
+function! s:ve_onemore()
+  let s:ve_save = &virtualedit
+  set virtualedit+=onemore
+endfunction
+function! s:ve_restore()
+  let &virtualedit = s:ve_save
+endfunction
 
 " change <Tab> from cmdline-completion to snippet expansion
 " by unmapping <Tab>.
