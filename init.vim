@@ -1279,6 +1279,18 @@ command! Cview
   \| set conceallevel=2 concealcursor=nc scrollbind 
   \| wincmd p
 
+" command-line completion {{{1
+" intuitive wildmenu behavior
+" relatively simple for nvim (neovim github, 9953)
+if has('nvim') && &wildoptions =~ "pum" 
+  cnoremap <expr> <Up>    wildmenumode() ? '<Left>'  : '<Up>'
+  cnoremap <expr> <Down>  wildmenumode() ? '<Right>' : '<Down>'
+  cnoremap <expr> <Left>  wildmenumode() ? '<Up>'    : '<Left>'
+  cnoremap <expr> <Right> wildmenumode() ? '<Down>'  : '<Right>'
+endif
+" for vim this may already be the default behavior, 
+" otherwise see https://vi.stackexchange.com/questions/22627/switching-arrow-key-mappings-for-wildmenu-tab-completion
+
 " cmdline + Ultisnips {{{1
 " -------------------
 " quick expand snippet via cmdline window
