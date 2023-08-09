@@ -1453,6 +1453,16 @@ omap <expr> P
   \ v:operator ==# 'y' ? "\<Esc>"."yy".v:count1."P" : 
   \ 'P'
 
+function! OperMap(lhs, rhs, opers, ...)
+  " Wrapper around :omap for operator pending mode
+  " Uses and <expr> mapping to 
+  "   check if v:operator is in a:opers, and maps lhs to rhs if so, otherwise not.
+  " Use optional arg to specify special map-<> arguments
+
+  let map_args = a:0 ? a:1 : ''
+  execute 'onoremap <expr>'..map_args..' '..a:lhs..' '.."'"..a:opers.."'"..' =~ v:operator ? '.."'<Esc>"..a:rhs.."' : '"..a:lhs.."'"
+endfunction
+
 " misc {{{1
 " ----
 set diffopt+=vertical	  " when starting diffmode, use vertical splits by default, such as with :diffsplit
