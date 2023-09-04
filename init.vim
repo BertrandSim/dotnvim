@@ -112,7 +112,7 @@ Plug 'jalvesaq/Nvim-R',
 Plug 'jalvesaq/R-Vim-runtime'			" keep vim R files up to date
 Plug 'lervag/vimtex',
   \ Cond(has('patch-7.4.52'),
-  \ { 'tag' : 'v2.10' })				" plugin for tex
+  \ { 'tag' : 'v2.13' })				" plugin for tex
 Plug 'sersorrel/vim-lilypond'			" lilypond runtime files 
 
   " text objects:
