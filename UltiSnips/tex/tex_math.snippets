@@ -4,6 +4,9 @@ from usnip_contexts import *
 from usnip_tex_contexts import * 	
 
 # def alphas_range = "a-zA-Zα-ωΑ-Ωϵϕϑϖϱ"
+
+tex_unicode_input = vim.vars.get('tex_unicode_input')
+
 endglobal
 
 # sub/superscripts
@@ -71,7 +74,7 @@ endsnippet
 
 context "math()"
 snippet nft "\infty" wA
-\infty
+`!p snip.rv = '∞' if tex_unicode_input else '\\infty'`
 endsnippet
 
 
@@ -79,12 +82,17 @@ endsnippet
 # ---------
 context "math()"
 snippet xx "\times" A
-\times $0
+`!p snip.rv = '×' if tex_unicode_input else '\\times'`
 endsnippet
 
 context "math()"
 snippet c. "\cdot" 
-\cdot
+`!p snip.rv = '⋅' if tex_unicode_input else '\\cdot'`
+endsnippet
+
+context "math()"
+snippet b. "bullet operator" 
+`!p snip.rv = '∙' if tex_unicode_input else '\\vysmblkcircle'`
 endsnippet
 
 context "math()"
