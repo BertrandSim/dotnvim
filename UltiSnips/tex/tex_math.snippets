@@ -2,6 +2,8 @@ global !p
 from usnip_helpers import *
 from usnip_contexts import *
 from usnip_tex_contexts import * 	
+
+# def alphas_range = "a-zA-Zα-ωΑ-Ωϵϕϑϖϱ"
 endglobal
 
 # sub/superscripts
@@ -198,7 +200,7 @@ endsnippet
 
 priority 20
 context "math()"
-snippet "([a-zA-Z])bar" "bar_postfix_alpha" riA
+snippet "([a-zA-Zα-ωΑ-Ωϵϕϑϖϱ])bar" "bar_postfix_alpha" riA
 \bar{`!p snip.rv=match.group(1)`}
 endsnippet
 
@@ -217,7 +219,7 @@ endsnippet
 
 priority 20
 context "math()"
-snippet "([a-zA-Z])hat" "hat_postfix_alpha" riA
+snippet "([a-zA-Zα-ωΑ-Ωϵϕϑϖϱ])hat" "hat_postfix_alpha" riA
 \hat{`!p snip.rv=match.group(1)`}
 endsnippet
 
@@ -236,7 +238,7 @@ endsnippet
 
 priority 20
 context "math()"
-snippet "([a-zA-Z])til" "tilde_postfix_alpha" riA
+snippet "([a-zA-Zα-ωΑ-Ωϵϕϑϖϱ])til" "tilde_postfix_alpha" riA
 \tilde{`!p snip.rv=match.group(1)`}
 endsnippet
 
@@ -255,7 +257,7 @@ endsnippet
 
 priority 20
 context "math()"
-snippet "([a-zA-Z])brv" "breve_postfix_alpha" riA
+snippet "([a-zA-Zα-ωΑ-Ωϵϕϑϖϱ])brv" "breve_postfix_alpha" riA
 \breve{`!p snip.rv=match.group(1)`}
 endsnippet
 
