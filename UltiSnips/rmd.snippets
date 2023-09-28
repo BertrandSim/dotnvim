@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.align='center', out.width='70%')
 endsnippet
 
 snippet rr "r code chunk" b
-\`\`\`{r $1}
+\`\`\`{r$1}
 ${2:${VISUAL}}
 \`\`\`
 $0
@@ -25,19 +25,32 @@ endsnippet
 
 # alias
 snippet chk "r code chunk" b
-\`\`\`{r $1}
+\`\`\`{r$1}
 ${2:${VISUAL}}
 \`\`\`
 $0
 endsnippet
+
+snippet res "r code chunk with echo=show_soln" b
+\`\`\`{r$1, echo=show_soln, eval=show_soln}
+${2:${VISUAL}}
+\`\`\`
+endsnippet
+
 
 snippet rasis "chunk for as-is text" b
-\`\`\`{asis}
+\`\`\`{asis$1}
 ${2:${VISUAL}}
 \`\`\`
 $0
 endsnippet
 
+snippet rases "chunk for as-is text with echo=show_soln" b
+\`\`\`{asis$1, echo=show_soln}
+${2:${VISUAL}}
+\`\`\`
+$0
+endsnippet
 
 
 extends markdown, tex, r

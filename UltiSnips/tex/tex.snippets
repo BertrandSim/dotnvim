@@ -28,13 +28,21 @@ post_expand "jump_forward(snip, 1)"
 snippet beamerdoc "Beamer template" b
 \documentclass[${1:}]{beamer}
 
+% \usetheme[]{}
+% \setbeamertemplate{}{}
+
 \usepackage{amsmath, amssymb}
-\usepackage[shortlabels]{enumitem}
-\setlist[enumerate]{}
 
 \begin{document}
 
-	${0:${VISUAL}}
+\title{}
+\subtitle{}
+	
+\begin{frame}
+\titlepage
+\end{frame}
+
+${0:${VISUAL}}
 
 \end{document}
 endsnippet
@@ -44,7 +52,8 @@ post_expand "jump_forward(snip, 2)"
 snippet doclua "unicode input with lualatex" b
 %! TeX program = lualatex
 \documentclass[${1:opt}]{${2:article}}
-\usepackage{unicode-math}
+\usepackage{amsmath} 
+\usepackage{unicode-math} %to load after any math or font-related packages
 %\setmainfont{Libertinus Serif}
 %\setmathfont{Libertinus Math}
 \setmainfont{STIX Two Text}
