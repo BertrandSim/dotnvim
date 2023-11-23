@@ -120,11 +120,11 @@ snippet "(\w+)\s*\+\=" "var+=" wrA
 `!p snip.rv=match.group(1)` <- `!p snip.rv=match.group(1)` + $0
 endsnippet
 
-snippet "(\w+)\-\-" "var--" wrA
+snippet "(\w+)\-\-" "var--" wr
 `!p snip.rv=match.group(1)` <- `!p snip.rv=match.group(1)` - 1
 endsnippet
 
-snippet "(\w+)\s*\-\=" "var-=" wrA
+snippet "(\w+)\s*\-\=" "var-=" wr
 `!p snip.rv=match.group(1)` <- `!p snip.rv=match.group(1)` - $0
 endsnippet
 
