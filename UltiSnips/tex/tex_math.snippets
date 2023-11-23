@@ -136,6 +136,8 @@ snippet te "\text" i
 \text{${1:${VISUAL}}}
 endsnippet
 
+# aligning equations
+# ------------------
 context "math()"
 snippet == " &= (alignment)" A
 &=
@@ -147,6 +149,20 @@ snippet \= "next line (\\) and &=" A
 \\\\ &=
 endsnippet
 
+context "math()"
+snippet "(\S.*)\\\\&" "\[ to \[ \begin{split}; = to &=" rA
+\begin{split}
+	`!p if not snip.c:
+    	curline = match.group(1)
+    	snip.rv = curline.replace("=", "&=")
+	`
+	&= ${1}
+\end{split}
+endsnippet
+
+
+# fractions
+# ---------
 context "math()"
 snippet // "frac{}{}" wA
 \frac{${1:${VISUAL:n}}}{${2:d}}
