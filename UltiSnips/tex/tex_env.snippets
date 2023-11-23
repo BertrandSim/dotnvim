@@ -1,0 +1,113 @@
+global !p
+from usnip_helpers import *
+from usnip_contexts import *
+from usnip_tex_contexts import * 	
+endglobal
+
+# environments ([{1
+# ------------
+
+snippet "(ben|en|env)" "\begin ... \end" r
+\begin{${1:env}}
+	${2:${VISUAL}}
+\end{$1}
+$0
+endsnippet
+ 
+snippet eq "equation env"
+\begin{equation}
+	${1:${VISUAL}}
+${2:,}\end{equation}
+$0
+endsnippet
+
+snippet al "align env"
+\begin{align}
+	${1:${VISUAL}}
+${2:,}\end{align}
+$0
+endsnippet
+
+snippet ald "aligned env"
+\begin{aligned}
+	${1:${VISUAL}}
+${2:,}\end{aligned}
+$0
+endsnippet
+
+snippet eqal "equation + aligned"
+\begin{equation}
+\begin{aligned}
+	${1:${VISUAL}}
+${2:,}\end{aligned}
+\end{equation}
+$0
+endsnippet
+
+
+# envs, starred variants ([{2
+# ----
+snippet eq* "equation* env" A
+\begin{equation*}
+	${1:${VISUAL}}
+${2:,}\end{equation*}
+$0
+endsnippet
+
+snippet al* "align* env" A
+\begin{align*}
+	${1:${VISUAL}}
+${2:,}\end{align*}
+$0
+endsnippet
+
+snippet eqal* "equation* + aligned" A
+\begin{equation*}
+\begin{aligned}
+	${1:${VISUAL}}
+${2:,}\end{aligned}
+\end{equation*}
+$0
+endsnippet
+
+# beamer ([{2
+# ------
+
+snippet fr "frame" b
+\begin{frame}
+\frametitle{$1}
+	${2:${VISUAL}}
+\end{frame}
+$0
+endsnippet
+
+# split a frame. title is retrieved from prev frametitle.
+snippet ebfr "end and begin frame" b
+\end{frame}
+
+\begin{frame}
+\frametitle{${1:`!p 
+if not snip.c:
+	fr_title_pos = vim.eval("searchpos('\s*\\frametitle{\zs.\+}', 'bnW')")
+	row = int(fr_title_pos[0])
+	col = int(fr_title_pos[1])
+
+	# if fr_title_pos != [0,0]:
+	if row != 0 or col != 0:
+		title = vim.current.buffer[row-1].rstrip()[(col-1):(-1)]
+	else:
+		title = ""
+	snip.rv = title
+`}}
+$0
+endsnippet
+
+# other environments ([{2
+# ----
+snippet soln "solution environment" b
+\begin{solution}
+	${1:${VISUAL}}
+\end{solution}
+endsnippet
+
+
