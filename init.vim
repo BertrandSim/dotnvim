@@ -155,8 +155,6 @@ call plug#end()
 " plugin configs {{{1
 " --------------
 "
-" TODO [2020-01-02]: setup sandwich exchange / cycle within same recipe group
-" TODO [2022-07-07]: find a map (or a command) for toggling frac. current: 'stf'
 " TODO [2022-07-07]: decide which text-objects to keep (see :h vimtex-features)
 "   [c]ommands/ [d]elimiters/ [e]nvironments/ math environments [$]/ sections [P]/ items [m]
 
