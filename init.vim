@@ -220,31 +220,8 @@ let g:vimtex_env_toggle_math_map = {
 
 
 " Use sandwich.vim-style mappings for ds,cs,ts --> sd, se, st/sT
-" temporary solution while transiting to sandwich.vim [TODO]
-if isdirectory($VIMHOME."/plugged/vimtex")
-
-  augroup vimtex_maps
-	autocmd!
-	" autocmd Filetype tex nmap sde <plug>(vimtex-env-delete)
-	" autocmd Filetype tex nmap sdc <plug>(vimtex-cmd-delete)
-	" autocmd Filetype tex nmap sd$ <plug>(vimtex-env-delete-math)
-	" autocmd Filetype tex nmap sdd <plug>(vimtex-delim-delete)
-	autocmd Filetype tex nmap see <plug>(vimtex-env-change)
-	autocmd Filetype tex nmap sec <plug>(vimtex-cmd-change)
-	autocmd Filetype tex nmap se$ <plug>(vimtex-env-change-math)
-	" autocmd Filetype tex nmap sed <plug>(vimtex-delim-change-math)
-	autocmd Filetype tex nmap ste <plug>(vimtex-env-toggle-star)
-	autocmd Filetype tex nmap stc <plug>(vimtex-cmd-toggle-star)
-	autocmd Filetype tex nmap st$ <plug>(vimtex-env-toggle-math)
-	autocmd Filetype tex nmap std <plug>(vimtex-delim-toggle-modifier)
-	autocmd Filetype tex xmap std <plug>(vimtex-delim-toggle-modifier)
-	autocmd Filetype tex nmap sTd <plug>(vimtex-delim-toggle-modifier-reverse)
-	autocmd Filetype tex xmap sTd <plug>(vimtex-delim-toggle-modifier-reverse)
-	autocmd Filetype tex nmap stf <plug>(vimtex-cmd-toggle-frac)
-	autocmd Filetype tex xmap stf <plug>(vimtex-cmd-toggle-frac)
-  augroup END
-endif
-
+"   disable specific vimtex mappings
+"   create mappings in after/ftplugin/tex/vimtex_mappings.vim
 let g:vimtex_mappings_disable = {
   \   'n': [
   \      'dse', 'dsc', 'ds$', 'dsd', 
