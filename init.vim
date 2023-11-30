@@ -108,7 +108,6 @@ Plug 'jalvesaq/Nvim-R',
   \ Cond( has('patch-8.2.84') \|\| 
   \       has('nvim-0.5.0'),
   \ { 'branch' : 'master' })			" interaction between R scripts with R terminal
-  " \ { 'branch' : 'stable' })			
 Plug 'jalvesaq/R-Vim-runtime'			" keep vim R files up to date
 Plug 'lervag/vimtex',
   \ Cond(has('patch-7.4.52'),
@@ -623,13 +622,12 @@ require('gitsigns').setup{
     map('v', '<leader>hr', function() gs.reset_hunk {vim.fn.line("."), vim.fn.line("v")} end)
     --map('n', '<leader>hS', gs.stage_buffer)
     --map('n', '<leader>hR', gs.reset_buffer)
-    map('n', '<leader>hp', gs.preview_hunk_inline)	
-    --map('n', '<leader>hp', gs.preview_hunk)	-- preview changes in a popup
-    --map('n', '<leader>hb', function() gs.blame_line{full=true} end)
-    --map('n', '<leader>tb', gs.toggle_current_line_blame)
+    map('n', '<leader>hp', gs.preview_hunk_inline)	-- preview changes inline
+    --map('n', '<leader>hp', gs.preview_hunk)		-- preview changes in a popup
     map('n', '<leader>hd', gs.diffthis)						-- diff with index
     map('n', '<leader>hD', function() gs.diffthis('~') end) -- diff with prev commit
     --map('n', '<leader>td', gs.toggle_deleted)
+    map('n', '<leader>hq', gs.setqflist)	-- show hunks in quickfix list
 
     -- Text objects
     map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
