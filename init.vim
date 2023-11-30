@@ -483,9 +483,10 @@ endfunction
 " }}}
 " vim-pandoc-syntax {{{2
 
-" use conceal / utf-8 chars for rmd/markdown documents
-let g:pandoc#syntax#conceal#use = 1
+" do not use conceal for rmd/markdown documents
+let g:pandoc#syntax#conceal#use = 0
 
+" if conceal is enabled, 
 " disable conceal / utf-8 chars for the following
   " don't replace # in #header
   " don't use smart quotes
