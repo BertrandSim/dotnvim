@@ -191,11 +191,11 @@ if has('win32')
   let g:vimtex_quickfix_method = 'pplatex'
 endif
 
-" \lw to write and compile.
-augroup vimtex_config
-  autocmd!
-  autocmd Filetype tex nnoremap <silent> <localleader>lw :<C-U>silent update \| VimtexCompile <CR>
-augroup END
+" augment leader-related mappings
+" in after/ftplugin/tex/vimtex_leader_mappings.vim
+"   \lw to write and compile.
+"   \lfl to compile with solutions
+"   \lfw to write and compile with solutions
 
 " [count] std/sTd cycles through 
 " \big, \Big, \bigg, \Bigg modifiers

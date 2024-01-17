@@ -43,4 +43,4 @@ function! VimTeX_unmap()
   silent! xunmap <buffer> stf 
 endfunction
 let b:undo_ftplugin .= 'call VimTeX_unmap() | '
-let b:undo_ftplugin .= 'delfunc VimTeX_unmap()'
+let b:undo_ftplugin .= 'delfunc VimTeX_unmap'
