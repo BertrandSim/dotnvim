@@ -109,9 +109,10 @@ Plug 'jalvesaq/Nvim-R',
   \       has('nvim-0.5.0'),
   \ { 'branch' : 'master' })			" interaction between R scripts with R terminal
 Plug 'jalvesaq/R-Vim-runtime'			" keep vim R files up to date
-Plug 'lervag/vimtex',
+Plug 'lervag/vimtex',					" plugin for tex
   \ Cond(has('patch-7.4.52'),
-  \ { 'tag' : 'v2.13' })				" plugin for tex
+  \ { 'commit':  '5af72cf' })			" allow arguments such as -jobname to :VimtexCompile
+  " \ { 'tag' : 'v2.13' })
 Plug 'sersorrel/vim-lilypond'			" lilypond runtime files 
 
   " text objects:
