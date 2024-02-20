@@ -45,10 +45,24 @@ ${2:${VISUAL}}
 $0
 endsnippet
 
+snippet rasis4 "wrapper chunk for as-is text" b
+\`\`\`\`{asis$1}
+${2:${VISUAL}}
+\`\`\`\`
+$0
+endsnippet
+
 snippet rases "chunk for as-is text with echo=show_soln" b
 \`\`\`{asis$1, echo=show_soln}
 ${2:${VISUAL}}
 \`\`\`
+$0
+endsnippet
+
+snippet com4 "wrapper chunk for comments" b
+\`\`\`\`{comment}
+${1:${VISUAL}}
+\`\`\`\`
 $0
 endsnippet
 
