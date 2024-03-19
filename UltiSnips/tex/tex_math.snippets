@@ -154,7 +154,7 @@ snippet "(\S.*)\\\\&" "\[ to \[ \begin{split}; = to &=" rA
 \begin{split}
 	`!p if not snip.c:
     	curline = match.group(1)
-    	snip.rv = curline.replace("=", "&=")
+    	snip.rv = curline.replace("=", "&=", 1)
 	`
 	\\\\ &= ${1}
 \end{split}
