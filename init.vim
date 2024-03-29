@@ -99,6 +99,7 @@ Plug 'andymass/vim-matchup'				" navigate and highlight matching pairs
 Plug 'lifepillar/vim-solarized8'		" off-yellow / off-blue colorscheme (light / dark variants)
 Plug 'jnurmine/Zenburn'					" low contrast dark colorscheme
 Plug 'sainnhe/gruvbox-material'			" pastel/retro groove colors, with a softer touch
+Plug 'cocopon/iceberg.vim'					" dark, bluish, low contrast
 
   " ft specific:
 Plug 'masukomi/vim-markdown-folding'	" expr-folding of markdown files
@@ -891,6 +892,8 @@ function! s:update_lightline_colors()
 	let g:lightline.colorscheme = 'solarized_nomode'
   elseif g:colors_name == 'gruvbox-material'
     let g:lightline.colorscheme = 'gruvbox_material'
+  elseif g:colors_name == 'iceberg'
+    let g:lightline.colorscheme = 'iceberg'
   endif
   call lightline#init()
   call lightline#colorscheme()
