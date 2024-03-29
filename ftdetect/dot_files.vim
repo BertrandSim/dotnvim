@@ -3,5 +3,6 @@
 autocmd BufRead,BufNewFile dot_Rprofile     setfiletype r
 autocmd BufRead,BufNewFile dot_bash_aliases setfiletype sh
 autocmd BufRead,BufNewFile dot_bashrc       setfiletype sh
+autocmd BufRead,BufNewFile dot_profile      setfiletype sh
 autocmd BufRead,BufNewFile dot_gitconfig    setfiletype gitconfig
 autocmd BufRead,BufNewFile dot_inputrc      setfiletype readline
