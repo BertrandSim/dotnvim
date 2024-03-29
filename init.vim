@@ -532,6 +532,9 @@ augroup END
 " }}}
 " clever-f settings {{{2
 
+" stay within the current line
+let g:clever_f_across_no_line = 1
+
 " let f always go forward, F always backward
 let g:clever_f_fix_key_direction = 1
 
