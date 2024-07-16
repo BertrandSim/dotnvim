@@ -85,6 +85,7 @@ Plug 'itchyny/lightline.vim'			" lean status line
 Plug 'SirVer/ultisnips',
   \ Cond(v:version >= 704, { 'tag': '3.2' })		" snippets; v3.2 on Nov 2019
 Plug 'junegunn/vim-easy-align'			" align lines by a char/regex
+Plug 'dhruvasagar/vim-table-mode'       " table creator and formatter
 Plug 'machakann/vim-sandwich'			" surroundings
 Plug 'rhysd/clever-f.vim',
   \ { 'commit' : 'e852984' }			" highlight f matches and repeat with f/F
@@ -753,6 +754,9 @@ nnoremap ]oc <Cmd>HighlightColorsOff<CR>
 " nnoremap coc <Cmd>HighlightColorsToggle<CR>
 " call OperMap('oc', '<Cmd>HighlightColorsToggle<CR>', 'cy=')
 onoremap <expr> oc 'cy=' =~ v:operator ? '<Esc><Cmd>HighlightColorsToggle<CR>' : 'oc'
+
+" table mode configs {{{2
+let g:table_mode_corner = '|'
 
 " file related settings {{{1
 " ---------------------
