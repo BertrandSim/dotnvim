@@ -1148,6 +1148,7 @@ augroup qcomment
   autocmd!
   autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
   autocmd FileType sh,python,r      let b:comment_leader = '# '
+  autocmd FileType rmd              let b:comment_leader = '# '
   autocmd FileType conf,fstab       let b:comment_leader = '# '
   autocmd FileType tex              let b:comment_leader = '% '
   autocmd FileType mail             let b:comment_leader = '> '
