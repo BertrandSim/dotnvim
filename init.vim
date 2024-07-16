@@ -132,8 +132,6 @@ Plug 'lewis6991/gitsigns.nvim',			" preview diffs within the buffer
   \ Cond(has('nvim'))
 
   " search and navigation:
-Plug 'preservim/nerdtree',				" file explorer in vim
-  \{ 'on': 'NERDTreeToggle' }
 Plug 'ctrlpvim/ctrlp.vim'				" fuzzy finder
 Plug 'majutsushi/tagbar'				" show tags on a side margin
 Plug 'ludovicchabant/vim-gutentags'		" automatically generate tags
@@ -663,8 +661,6 @@ map gh <Plug>(columnmove-B)
 map gl <Plug>(columnmove-E)
 
 " }}}
-" NERDTree {{{2
-nnoremap <silent> <C-n> :<C-u>NERDTreeToggle<CR>
 
 " CtrlP {{{2
 " basic search modes
