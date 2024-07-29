@@ -140,10 +140,11 @@ Plug 'kshenoy/vim-signature'			" show marks in signs column (left gutter)
 
   " colors:
 if has('nvim')
-  Plug 'brenoprata10/nvim-highlight-colors' " show color codes and names in neovim 
+  Plug 'brenoprata10/nvim-highlight-colors',
+	\ { 'commit' : 'a8f6952' }			" show color codes and names in neovim 
 else
   Plug 'chrisbra/Colorizer', 
-	\{ 'on': ['ColorHighlight'] }			" show color codes and names in vim
+	\{ 'on': ['ColorHighlight'] }		" show color codes and names in vim
 endif
 
   " misc:
@@ -740,20 +741,20 @@ endif
 " nvim-highlight-colors settings {{{2
 lua << EOF
 require("nvim-highlight-colors").setup {
-	render = 'background', -- or 'foreground' or 'first_column'
-	-- render = 'first_column', -- causes screen corruption!
-	enable_named_colors = true,
-	enable_tailwind = false,
+	render = 'background', -- 'virtual' or 'background' or 'foreground'
+	enable_short_hex = false, -- eg. '#fff'
+	enable_named_colors = false, -- eg. 'green'
+	enable_tailwind = false, -- tailwind css
 	custom_colors = {},
 }
 EOF
 
 " enable/disable/toggle with `[oc, ]oc, coc`
-nnoremap [oc <Cmd>HighlightColorsOn<CR>
-nnoremap ]oc <Cmd>HighlightColorsOff<CR>
+nnoremap [oc <Cmd>HighlightColors On<CR>
+nnoremap ]oc <Cmd>HighlightColors Off<CR>
 " nnoremap coc <Cmd>HighlightColorsToggle<CR>
 " call OperMap('oc', '<Cmd>HighlightColorsToggle<CR>', 'cy=')
-onoremap <expr> oc 'cy=' =~ v:operator ? '<Esc><Cmd>HighlightColorsToggle<CR>' : 'oc'
+onoremap <expr> oc 'cy=' =~ v:operator ? '<Esc><Cmd>HighlightColors Toggle<CR>' : 'oc'
 
 " table mode configs {{{2
 let g:table_mode_corner = '|'
