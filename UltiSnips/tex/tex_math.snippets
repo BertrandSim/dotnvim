@@ -3,6 +3,16 @@ from usnip_helpers import *
 from usnip_contexts import *
 from usnip_tex_contexts import * 	
 
+import tex_greeks as tg
+   # contains python objects for greek letters
+   # eg. {a: alpha, b: beta, ...}
+   # and also a list of greek commands [alpha, beta, ...]
+   #
+   # greekalpha_lower: dictionary for lowercase alphabets
+   # greekalpha_variants: dictionary for lowercase variants
+   # greekalpha_upper: dictionary for uppercase alphabets
+   # greekalpha_values: list of greek commands without the '\'
+
 # def alphas_range = "a-zA-Zα-ωΑ-Ωϵϕϑϖϱ"
 
 tex_unicode_input = vim.vars.get('tex_unicode_input')
@@ -259,9 +269,14 @@ endsnippet
 
 priority 100
 context "math()"
-snippet "(\\[a-zA-Z]+)hat" "hat_postfix_\sym" riA
-\hat{`!p snip.rv=match.group(1)`}
+snippet "\\([a-zA-Z]+)hat" "hat_postfix_\sym" riA
+`!p if match.group(1) in tg.greekalpha_values:
+	snip.rv = r"\hat{" + match.group(1) + r"}"
+else:
+	snip.rv = match.group(0)
+`
 endsnippet
+# \hat{`!p snip.rv=match.group(1)`}
 
 
 priority 10
@@ -281,7 +296,6 @@ context "math()"
 snippet "(\\[a-zA-Z]+)til" "tilde_postfix_\sym" riA
 \tilde{`!p snip.rv=match.group(1)`}
 endsnippet
-
 
 priority 10
 context "math()"
