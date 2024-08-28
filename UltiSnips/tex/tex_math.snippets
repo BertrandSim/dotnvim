@@ -220,7 +220,7 @@ endsnippet
 # math accents
 # ------------
 
-# accents for \bar, \hat, \tilde (til), and \breve (brv)
+# accents for \bar, \hat, \vec, \tilde (til), and \breve (brv)
 # eg.  til -> tilde{.}
 #     Xtil -> tilde{X}    (postfix)
 #  \symtil -> tilde{\sym} (postfix)
@@ -301,4 +301,20 @@ snippet "(\\[a-zA-Z]+)brv" "breve_postfix_\sym" riA
 \breve{`!p snip.rv=match.group(1)`}
 endsnippet
 
+priority 10
+context "math()"
+snippet "(?<!\\)vec" "vec" r
+\vec{${1:${VISUAL}}}$0
+endsnippet
 
+priority 20
+context "math()"
+snippet "([a-zA-Zα-ωΑ-Ωϵϕϑϖϱ])vec" "vec_postfix_alpha" riA
+\vec{`!p snip.rv=match.group(1)`}
+endsnippet
+
+priority 100
+context "math()"
+snippet "(\\[a-zA-Z]+)vec" "vec_postfix_\sym" riA
+\vec{`!p snip.rv=match.group(1)`}
+endsnippet
