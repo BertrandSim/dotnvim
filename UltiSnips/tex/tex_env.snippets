@@ -102,6 +102,18 @@ if not snip.c:
 $0
 endsnippet
 
+snippet 2col "multicolumn layout" b
+\begin{columns}
+	\begin{column}{.5\textwidth}
+		${1:${VISUAL}}
+	\end{column}
+	\begin{column}{.5\textwidth}
+		${2}
+	\end{column}
+\end{columns}
+endsnippet
+
+
 # other environments ([{2
 # ----
 snippet soln "solution environment" b
@@ -110,4 +122,9 @@ snippet soln "solution environment" b
 \end{solution}
 endsnippet
 
+snippet lstl "lstlisting" b
+\begin{lstlisting}
+	${1:${VISUAL}}
+\end{lstlisting}
+endsnippet
 
