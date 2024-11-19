@@ -4,7 +4,7 @@
 " merged as of 2021-10-29
 " but reverted as of 2022-02-19
 
-setlocal indentkeys=!^F,o,O,0(,0),0],0},\&,0=\\item,0=\\else,0=\\fi
+setlocal indentkeys=!^F,o,O,0(,0),0],0},0=\\item,0=\\else,0=\\fi
 
 " Add standard closing math delimiters to indentkeys
 for s:delim in [
