@@ -17,7 +17,7 @@ let snip_str_teqn = '$${1:${VISUAL}}$'
 let snip_str_deqn = 
   \'\[' ."\n".
   \"\t".  '${1:${VISUAL}}' ."\n".
-  \'${2:,}\]' ."\n".
+  \'\]' ."\n".
   \'$0'
 
 " \[
