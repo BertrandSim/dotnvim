@@ -12,8 +12,9 @@ def match_open_delim(d):
 
 endglobal
 
+# don't auto expand this, since it clashes with klr -> \rho
 context "math()"
-snippet lr "left...right" iA
+snippet lr "left...right" i
 \\left${1:(} ${2:${VISUAL}} \\right`!p snip.rv=match_open_delim(t[1])`
 endsnippet
 
