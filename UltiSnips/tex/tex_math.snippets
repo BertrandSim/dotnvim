@@ -121,6 +121,30 @@ snippet gte "\geq, greater than or equal" iA
 endsnippet
 
 
+# derivatives
+# -----------
+
+context "math()"
+post_expand "jump_forward(snip, 1)"
+snippet pp "partial deriv" i
+\frac{\partial$1}{\partial $2} $0
+endsnippet
+
+# requires the macro
+# \NewDocumentCommand{\pd}{o m m}{% 
+#   % partial derivative with optional order
+#   \frac{\partial\IfValueT{#1}{^{#1}} #2}{\partial #3}
+# }
+context "math()"
+snippet pd "\pd{}{}" i
+\pd{$1}{$2}
+endsnippet
+
+context "math()"
+snippet pd2 "\pd{}{}" i
+\pd[2]{$1}{$2}
+endsnippet
+
 # arpeggio mappings
 # -----------------
 # see .vim/after/ftplugin/tex/brackets_arpeggio_tex.vim
@@ -220,11 +244,6 @@ snippet \int "int_{}^{}"
 \int_{${1}}^{${2}} $0
 endsnippet
 
-context "math()"
-post_expand "jump_forward(snip, 1)"
-snippet pp "partial deriv" i
-\frac{\partial$1}{\partial $2} $0
-endsnippet
 
 
 # math accents
