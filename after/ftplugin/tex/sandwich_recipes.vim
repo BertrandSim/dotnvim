@@ -1,27 +1,41 @@
 " custom tex recipes / tex surroundings.
 " Recipes adapted from vim-sandwich/macros/sandwich/ftplugin/tex.vim
+
+" custom recipes for
+"   \texttt [tt]
+
 " compound recipes for 
 "   commands [c],
 "   tex environments [e]
 "   quotes [o, lq], 
 "   math environments $,$$,\(,\[ [$],
 "   math delims [d, dl].
-" for tex delims [] and {}, see bracket recipes in .vim/plugin/sandwich_custom.vim
+" for tex delims [] and {}, see bracket_recipes in plugin/sandwich_recipes.vim
 
 " custom textobjects
 "   latex quote text-object [io, ao] 
 " for ic, ac; ic, ac; i$, a$; id, ad; see vimtex
 
-
 if !exists("g:loaded_sandwich") | finish | endif
 
 scriptencoding utf-8
 
+if !exists('s:local_recipes')
+
+" custom recipes
+
+  let s:local_recipes = [
+	\   {
+	\     '__filetype__' : 'tex',
+	\     'buns'         : ['\texttt{', '}'],
+	\     'nesting'      : 1,
+	\     'input'        : ['tt'],
+	\   }
+	\ ]
 
 " compound recipes {{{ 
 
-if !exists('s:local_recipes')
-  let s:local_recipes = [
+  let s:local_recipes += [
         \   {
         \     '__filetype__': 'tex',
         \     'buns'    : 'sandwich#filetype#tex#CmdInput()',
