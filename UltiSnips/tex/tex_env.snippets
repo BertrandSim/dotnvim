@@ -88,6 +88,14 @@ snippet fr "frame" b
 $0
 endsnippet
 
+snippet frf "frame[fragile]" b
+\begin{frame}[fragile]
+\frametitle{$1}
+	${2:${VISUAL}}
+\end{frame}
+$0
+endsnippet
+
 # split a frame. title is retrieved from prev frametitle.
 snippet ebfr "end and begin frame" b
 \end{frame}
