@@ -254,7 +254,7 @@ endsnippet
 # math accents
 # ------------
 
-# accents for \bar, \hat, \vec, \tilde (til), and \breve (brv)
+# accents for \bar, \hat, \tilde (til), \breve (brv), \vec, and \mat (mrx)
 # eg.  til -> tilde{.}
 #     Xtil -> tilde{X}    (postfix)
 #  \symtil -> tilde{\sym} (postfix)
@@ -274,9 +274,14 @@ endsnippet
 
 priority 100
 context "math()"
-snippet "(\\[a-zA-Z]+)bar" "bar_postfix_\sym" riA
-\bar{`!p snip.rv=match.group(1)`}
+snippet "\\([a-zA-Z]+)bar" "bar_postfix_\sym" riA
+`!p if match.group(1) in tg.greekalpha_values:
+	snip.rv = "\\bar{\\" + match.group(1) + "}"
+else:
+	snip.rv = match.group(0)
+`
 endsnippet
+# \bar{`!p snip.rv=match.group(1)`}
 
 
 priority 10
@@ -295,12 +300,11 @@ priority 100
 context "math()"
 snippet "\\([a-zA-Z]+)hat" "hat_postfix_\sym" riA
 `!p if match.group(1) in tg.greekalpha_values:
-	snip.rv = r"\hat{" + match.group(1) + r"}"
+	snip.rv = "\\hat{\\" + match.group(1) + "}"
 else:
 	snip.rv = match.group(0)
 `
 endsnippet
-# \hat{`!p snip.rv=match.group(1)`}
 
 
 priority 10
@@ -317,8 +321,12 @@ endsnippet
 
 priority 100
 context "math()"
-snippet "(\\[a-zA-Z]+)til" "tilde_postfix_\sym" riA
-\tilde{`!p snip.rv=match.group(1)`}
+snippet "\\([a-zA-Z]+)til" "tilde_postfix_\sym" riA
+`!p if match.group(1) in tg.greekalpha_values:
+	snip.rv = "\\tilde{\\" + match.group(1) + "}"
+else:
+	snip.rv = match.group(0)
+`
 endsnippet
 
 priority 10
@@ -355,4 +363,22 @@ priority 100
 context "math()"
 snippet "(\\[a-zA-Z]+)vec" "vec_postfix_\sym" riA
 \vec{`!p snip.rv=match.group(1)`}
+endsnippet
+
+priority 10
+context "math()"
+snippet "(?<!\\)mrx" "matrix" r
+\mat{${1:${VISUAL}}}$0
+endsnippet
+
+priority 20
+context "math()"
+snippet "([a-zA-Zα-ωΑ-Ωϵϕϑϖϱ])mrx" "matrix_postfix_alpha" riA
+\mat{`!p snip.rv=match.group(1)`}
+endsnippet
+
+priority 100
+context "math()"
+snippet "(\\[a-zA-Z]+)mrx" "matrix_postfix_\sym" riA
+\mat{`!p snip.rv=match.group(1)`}
 endsnippet
